@@ -48,6 +48,7 @@ class PaginateFirestore extends StatefulWidget {
     this.isLive = false,
     this.includeMetadataChanges = false,
     this.options,
+    this.height,
   }) : super(key: key);
 
   final Widget bottomLoader;
@@ -72,6 +73,9 @@ class PaginateFirestore extends StatefulWidget {
   final DocumentSnapshot? startAfterDocument;
   final Widget? header;
   final Widget? footer;
+
+  /// Should be greater than zero
+  final double? height;
 
   /// Use this only if `isLive = false`
   final GetOptions? options;
@@ -135,7 +139,7 @@ class _PaginateFirestoreState extends State<PaginateFirestore> {
     return SingleChildScrollView(
       child: Container(
         alignment: Alignment.center,
-        height: MediaQuery.of(context).size.height,
+        height: widget.height ?? MediaQuery.of(context).size.height,
         child: child,
       ),
     );
